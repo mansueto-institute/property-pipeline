@@ -1,0 +1,90 @@
+
+[project]
+name="propertypipeline"
+version = "0.1.0"
+description = "Python Boilerplate contains all the boilerplate you need to create a Python package."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+keywords = ["propertypipeline"]
+authors = [
+  {name="Nicholas Marchio", email="namarchio@gmail.com"},
+]
+classifiers = [
+  'Development Status :: 2 - Pre-Alpha',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+  'Natural Language :: English',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3.7',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+]
+dependencies = [
+  
+]
+
+[project.urls]
+homepage = "https://github.com/mansueto-institute/propertypipeline"
+documentation = "https://propertypipeline.readthedocs.io/"
+repository = "https://github.com/mansueto-institute/propertypipeline"
+changelog = "https://github.com/nmarchio/propertypipeline/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+docs = [
+  "myst-parser==0.18.0",
+  "Sphinx==5.1.1",
+  "sphinx-rtd-theme==1.0.0",
+]
+dev = [
+  "black",
+  "build",
+  "bump2version",
+  "flake8",
+  "mypy",
+  "pylint",
+  "pytest",
+  "pytest-cov",
+  "pytest-mock",
+]
+
+[project.scripts]
+propertypipeline = "propertypipeline.cli:main"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tools.setuptools]
+license-files = ["LICENSE"]
+
+[tools.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tools.setuptools.include-package-data]
+propertypipeline = ["LICENSE", "README.md"]
+
+[tools.setuptools.exclude-package-data]
+propertypipeline = [".gitignore", "contrib", "docs", "test*"]
+
+[tool.black]
+line-length = 79
+
+[tool.mypy]
+packages = ["src"]
+
+
+[tool.pytest.ini_options]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+addopts = [
+    "--doctest-modules",
+    "--cov-config=.coveragerc",
+    "--cov=propertypipeline",
+    "--cov-branch",
+    "--cov-report=term-missing",
+    "--cov-report=xml:coverage.xml",
+    "--junitxml=coverage-junit.xml",
+    "--durations=5"
+]
